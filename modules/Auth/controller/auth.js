@@ -41,7 +41,7 @@ export const signIn = async (req, res) => {
     if (match) {
       const token = jwt.sign(
         { username: user.firstName + " " + user.lastName, email: user.email , id:user._id},
-        process.env.tokenSignature
+        process.env.tokenSignature, {expiresIn:'1hr'}
       );
       res.json({ message: "Done", token });
     } else {
